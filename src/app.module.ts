@@ -3,10 +3,13 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import { UsersModul } from './users/users.modul';
 import {ConfigModule} from "@nestjs/config";
 import {User} from "./users/users.models";
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module( {
-    controllers : [],
-    providers: [],
+    controllers : [AuthController],
+    providers: [AuthService],
     imports: [
         ConfigModule.forRoot({
             envFilePath: `.${process.env.NODE_ENV}.env`
@@ -22,6 +25,7 @@ import {User} from "./users/users.models";
             autoLoadModels: true
         }),
         UsersModul,
+        AuthModule,
     ]
 })
 export class AppModule {}
