@@ -1,8 +1,9 @@
-import { Controller, Body, Post, Get } from '@nestjs/common';
+import {Controller, Body, Post, Get, UseGuards} from '@nestjs/common';
 import {CreateUserDto} from "./dto/create-user-dto";
 import {UsersService} from "./users.service";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {User} from "./users.models";
+import {JwtAuthGuards} from "../auth/jwt.auth.guards";
 @ApiTags('UsersApi')
 @Controller('users')
 export class UsersController {
