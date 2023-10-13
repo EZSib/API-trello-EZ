@@ -1,7 +1,7 @@
 import {NestFactory} from "@nestjs/core";
 import {AppModule} from "./app.module";
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
-import {JwtAuthGuards} from "./auth/jwt.auth.guards";
+import {ValidationPipe} from "./pipe/validation.pipe";
 
 async function start()  {
     const PORT = process.env.PORT || 5000
@@ -16,6 +16,7 @@ async function start()  {
     const document = SwaggerModule.createDocument(app,config)
     SwaggerModule.setup('/api/docs', app, document)
 
+    app.useGlobalPipes(new ValidationPipe())
 
     await app.listen(PORT, () => console.log(`Server start on port ${PORT}`))
 }

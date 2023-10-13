@@ -3,10 +3,8 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import { UsersModule } from './users/users.module';
 import {ConfigModule} from "@nestjs/config";
 import {User} from "./users/users.models";
-import { AuthController } from './auth/auth.controller';
-import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
-import {JwtService} from "@nestjs/jwt";
+import { PostsModule } from './posts/posts.module';
 @Module( {
     controllers : [],
     providers: [],
@@ -26,6 +24,7 @@ import {JwtService} from "@nestjs/jwt";
         }),
         UsersModule,
         AuthModule,
+        PostsModule,
     ]
 })
 export class AppModule {}
