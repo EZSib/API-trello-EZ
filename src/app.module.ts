@@ -8,7 +8,10 @@ import { PostsModule } from './posts/posts.module';
 import {Post} from "./posts/posts.models";
 import { FilesModule } from './files/files.module';
 import {ServeStaticModule} from "@nestjs/serve-static";
+import { ColumnsService } from './columns/columns.service';
+import { ColumnsModule } from './columns/columns.module';
 import * as path from 'path';
+import {UserColumn} from "./columns/columns.models";
 @Module( {
     controllers : [],
     providers: [],
@@ -26,13 +29,14 @@ import * as path from 'path';
             username: process.env.POSTGRESS_USER,
             password: process.env.POSTGRESS_PASSWORD,
             database: process.env.POSTGRESS_DB,
-            models: [User, Post],
+            models: [User, Post,UserColumn],
             autoLoadModels: true
         }),
         UsersModule,
         AuthModule,
         PostsModule,
         FilesModule,
+        ColumnsModule,
     ]
 })
 export class AppModule {}
