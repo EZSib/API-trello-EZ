@@ -17,7 +17,9 @@ export class ColumnsController {
     @Post('/columns')
     create(@Body() dto: CreateColumnDto) {
         return this.columnsService.createColumn(dto);
+
     }
+
 }
     //
     // @ApiOperation({summary: 'Get all users'})
