@@ -15,14 +15,22 @@ export class UserColumn extends Model <UserColumn, ColumnCreationAttrs> {
     @Column({type: DataType.STRING, unique: true, allowNull: false})
     title: string;
 
-    @ForeignKey(() => User)
-    @Column({type: DataType.INTEGER})
-    userId: number;
+    @ApiProperty({example: '"65353795450c6870df94394b"', description: 'autoFilled'})
+    @Column({type: DataType.STRING})
+    listId: string;
+
 
     @ApiProperty({example: 'false', description: 'delete or not'})
     @Column({type: DataType.BOOLEAN})
     Deleted: boolean = false;
 
+    @ForeignKey(() => User)
+    @Column({type: DataType.INTEGER})
+    userId: number;
+
     @BelongsTo(() => User)
     author: User
+
+
+
 }

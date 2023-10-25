@@ -1,4 +1,4 @@
-import {Module} from "@nestjs/common";
+import {Module,MiddlewareConsumer } from "@nestjs/common";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { UsersModule } from './users/users.module';
 import {ConfigModule} from "@nestjs/config";
@@ -11,9 +11,16 @@ import {ServeStaticModule} from "@nestjs/serve-static";
 import { ColumnsModule } from './columns/columns.module';
 import * as path from 'path';
 import {UserColumn} from "./columns/columns.models";
+import {AuthMiddleware} from "./auth/auth.middleware";
+import { CardsController } from './cards/cards.controller';
+import { CardsService } from './cards/cards.service';
+import { CardsModule } from './cards/cards.module';
+import {UserCard} from "./cards/cards.models";
+
 
 
 @Module( {
+
     controllers : [],
     providers: [],
     imports: [
@@ -30,7 +37,7 @@ import {UserColumn} from "./columns/columns.models";
             username: process.env.POSTGRESS_USER,
             password: process.env.POSTGRESS_PASSWORD,
             database: process.env.POSTGRESS_DB,
-            models: [User, Post,UserColumn],
+            models: [User, Post,UserColumn,UserCard],
             autoLoadModels: true
         }),
         UsersModule,
@@ -38,6 +45,13 @@ import {UserColumn} from "./columns/columns.models";
         PostsModule,
         FilesModule,
         ColumnsModule,
+        CardsModule,
     ]
 })
-export class AppModule {}
+
+export class AppModule {
+    // configure(consumer: MiddlewareConsumer) {
+    //     consumer.apply(AuthMiddleware).forRoutes('*')
+    // }
+}
+

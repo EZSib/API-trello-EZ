@@ -1,12 +1,15 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Get, Injectable, Post, UseGuards,Header,Headers, Req} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {User} from "../users/users.models";
 import {ColumnsService} from "./columns.service";
 import {UserColumn} from "./columns.models"
 import {CreateColumnDto} from "./dto/create-column-dto";
+import {JwtAuthGuards} from "../auth/jwt.auth.guards";
+import { Request } from 'express';
 @Controller('users')
 @ApiTags('ColumnsApi')
 
+@Injectable()
 export class ColumnsController {
 
     constructor(private columnsService: ColumnsService) {
@@ -14,9 +17,11 @@ export class ColumnsController {
 
     @ApiOperation({summary: 'Create post'})
     @ApiResponse({status: 200, type: UserColumn})
-    @Post('/columns')
-    create(@Body() dto: CreateColumnDto) {
-        return this.columnsService.createColumn(dto);
+    @Post('/columns/create')
+    @UseGuards(JwtAuthGuards)
+    create(@Headers('Authorization') headers:string,
+           @Body() dto: CreateColumnDto) {
+        return this.columnsService.createColumn(headers, dto);
 
     }
 
