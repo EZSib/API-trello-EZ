@@ -20,21 +20,22 @@ export class CommentsService {
             data: Res[];
         };
 
-        const response = await fetch(`https://api.trello.com/1/cards?idList=${dto.listId}&key=${keyApi}&token=${trelloToken}`, {
+        const response = await fetch(`https://api.trello.com/1/cards/${dto.cardId}/actions/comments?text=?&key=${keyApi}&token=${trelloToken}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                'name': dto.cardName
+                'text': dto.text
             })
         })
+
         async function getgthis(response){
             const result = (await response.json()) as GetUsersResponse;
             const res = JSON.stringify(result, null, 4)
             return res.split('\n')[1].slice(11,35);
         }
-        dto.cardId = await getgthis(response)
+        dto.commentId = await getgthis(response)
 
         return await this.userCommentRepository.create(dto)
 

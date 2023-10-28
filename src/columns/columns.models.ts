@@ -16,7 +16,7 @@ export class UserColumn extends Model <UserColumn, ColumnCreationAttrs> {
     title: string;
 
     @ApiProperty({example: '"65353795450c6870df94394b"', description: 'autoFilled'})
-    @Column({type: DataType.STRING})
+    @Column({type: DataType.STRING, unique: true})
     listId: string;
 
 

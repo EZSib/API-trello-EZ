@@ -1,13 +1,13 @@
 import {ApiProperty} from "@nestjs/swagger";
-import {IsNumber, IsString} from "class-validator";
+import {IsString} from "class-validator";
 
 export class CreateCommentDto {
-    @ApiProperty({example: '65353795450c6870df94394b', description: 'listId (trello listId)'})
+    @ApiProperty({example: '65353795450c6870df94394b', description: 'cardId (trello cardId)'})
     @IsString({message:'Must be string'})
-    readonly listId: string;
-    @ApiProperty({example: 'Card', description: 'Card name'})
+    readonly cardId: string;
+    @ApiProperty({example: 'U welcome!', description: 'Text comment'})
     @IsString({message:'Must be string'})
-    readonly cardName: string;
+    readonly text: string;
     userId: number;
-    cardId: string;
+    commentId: string;
 }

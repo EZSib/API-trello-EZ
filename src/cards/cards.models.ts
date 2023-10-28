@@ -16,9 +16,12 @@ export class UserCard extends Model <UserCard, CardCreationAttrs> {
     @Column({type: DataType.STRING, defaultValue: ''})
     cardName: string;
 
-    @ApiProperty({example: '65353795450c6870df94394b', description: 'trelloColumnID'})
+    @ApiProperty({example: '65353795450c6870df94394b', description: 'trelloCardID'})
     @Column({type: DataType.STRING, unique:true})
     cardId: string;
+
+    @Column({type: DataType.STRING })
+    listId: string;
 
     @ForeignKey(() => User)
     @ApiProperty({example: 0, description: 'autoFilled'})
@@ -27,6 +30,6 @@ export class UserCard extends Model <UserCard, CardCreationAttrs> {
 
 
     @BelongsTo(() => User)
-    author: User
+    author: User;
 
 }

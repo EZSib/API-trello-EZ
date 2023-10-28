@@ -16,6 +16,7 @@ import { CardsController } from './cards/cards.controller';
 import { CardsService } from './cards/cards.service';
 import { CardsModule } from './cards/cards.module';
 import {UserCard} from "./cards/cards.models";
+import {CommentsModule} from "./comments/comments.module";
 
 
 
@@ -46,6 +47,7 @@ import {UserCard} from "./cards/cards.models";
         FilesModule,
         ColumnsModule,
         CardsModule,
+        CommentsModule,
     ]
 })
 

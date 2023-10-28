@@ -5,7 +5,6 @@ import {ColumnsService} from "./columns.service";
 import {UserColumn} from "./columns.models"
 import {CreateColumnDto} from "./dto/create-column-dto";
 import {JwtAuthGuards} from "../auth/jwt.auth.guards";
-import { Request } from 'express';
 @Controller('users')
 @ApiTags('ColumnsApi')
 
@@ -15,7 +14,7 @@ export class ColumnsController {
     constructor(private columnsService: ColumnsService) {
     }
 
-    @ApiOperation({summary: 'Create post'})
+    @ApiOperation({summary: 'Create columns'})
     @ApiResponse({status: 200, type: UserColumn})
     @Post('/columns/create')
     @UseGuards(JwtAuthGuards)
