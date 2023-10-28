@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {InjectModel} from "@nestjs/sequelize";
 import {JwtService} from "@nestjs/jwt";
-import {board, keyApi, trelloToken} from "../trello_items";
+import { keyApi, trelloToken} from "../trello_items";
 import {UserCard} from "./cards.models";
 import {CreateCardDto} from "./dto/create-card-dto";
 
