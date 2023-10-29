@@ -7,6 +7,7 @@ import { UserCard } from "../cards/cards.models";
 import { AuthModule } from "../auth/auth.module";
 import { UserColumn } from "../columns/columns.models";
 import { UserComment } from "./comments.models";
+import {Post} from "../posts/posts.models";
 
 
 
@@ -15,7 +16,7 @@ import { UserComment } from "./comments.models";
   providers: [CommentsService],
   controllers: [CommentsController],
   imports: [
-    SequelizeModule.forFeature([UserColumn, User,UserCard, UserComment]),
+    SequelizeModule.forFeature([User, Post,UserColumn,UserCard,UserComment]),
     AuthModule]
 })
 export class CommentsModule {}

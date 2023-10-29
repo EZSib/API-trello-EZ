@@ -12,8 +12,6 @@ interface ColumnCreationAttrs {
 }
 @Table({tableName: 'columns'})
 export class UserColumn extends Model <UserColumn, ColumnCreationAttrs> {
-    @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
-    id: number;
 
     @ApiProperty({example: 'Interesting', description: 'columnName'})
     @Column({type: DataType.STRING, unique: true, allowNull: false})
@@ -21,7 +19,7 @@ export class UserColumn extends Model <UserColumn, ColumnCreationAttrs> {
 
     @ForeignKey(() => UserColumn)
     @ApiProperty({example: '"65353795450c6870df94394b"', description: 'autoFilled'})
-    @Column({type: DataType.STRING, unique: true})
+    @Column({type: DataType.STRING, unique: true, primaryKey: true})
     listId: string;
 
 

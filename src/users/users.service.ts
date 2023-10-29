@@ -4,6 +4,7 @@ import { User} from "./users.models";
 import {CreateUserDto} from "./dto/create-user-dto";
 import {BanUserDto} from "./dto/ban-user-dto";
 
+
 @Injectable()
 export class UsersService {
 
@@ -28,9 +29,13 @@ export class UsersService {
         if(!user){
             throw new HttpException('user not found', HttpStatus.NOT_FOUND);
         }
-        user.banned = true;
+        user.banned = !user.banned;
         user.banReason = dto.banReason;
         await user.save();
+        return user;
+    }
+    async getUserByUserId(id){
+        const user = await this.userRepository.findByPk(id)
         return user;
     }
 }

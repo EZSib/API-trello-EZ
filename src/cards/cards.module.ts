@@ -6,6 +6,8 @@ import {CardsService} from "./cards.service";
 import {UserCard} from "./cards.models";
 import {AuthModule} from "../auth/auth.module";
 import {UserColumn} from "../columns/columns.models";
+import {UserComment} from "../comments/comments.models";
+import {Post} from "../posts/posts.models";
 
 
 
@@ -14,7 +16,7 @@ import {UserColumn} from "../columns/columns.models";
     providers: [CardsService],
     controllers: [CardsController],
     imports: [
-        SequelizeModule.forFeature([UserColumn, User,UserCard]),
+        SequelizeModule.forFeature([User, Post,UserColumn,UserCard,UserComment]),
         AuthModule]
 })
 export class CardsModule {}

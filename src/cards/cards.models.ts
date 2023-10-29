@@ -14,8 +14,6 @@ interface CardCreationAttrs {
 }
 @Table({tableName: 'cards'})
 export class UserCard extends Model <UserCard, CardCreationAttrs> {
-    @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
-    id: number;
 
     @ApiProperty({example: 'Interesting', description: 'CardName(empty when creating )'})
     @Column({type: DataType.STRING, defaultValue: ''})
@@ -23,7 +21,7 @@ export class UserCard extends Model <UserCard, CardCreationAttrs> {
 
     @ForeignKey(() => UserCard)
     @ApiProperty({example: '65353795450c6870df94394b', description: 'trelloCardID'})
-    @Column({type: DataType.STRING, unique:true})
+    @Column({type: DataType.STRING, unique:true,primaryKey: true})
     cardId: string;
 
     @ForeignKey(() => UserColumn)
@@ -44,4 +42,5 @@ export class UserCard extends Model <UserCard, CardCreationAttrs> {
 
     @HasMany(() => UserComment)
     comments: UserComment[];
+
 }
