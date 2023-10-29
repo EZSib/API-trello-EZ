@@ -12,7 +12,7 @@ export class CommentsService {
                 private jwtService: JwtService) {}
     async createComment(header:string, dto: CreateCommentDto):Promise<UserComment> {
         const fetch = await require('node-fetch');
-        dto.userId = this.jwtService.verify(header.split(' ')[1]).id
+        dto.userId = this.jwtService.verify(header.split(' ')[1]).userId
 
         type Res = {};
 

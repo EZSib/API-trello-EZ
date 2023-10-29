@@ -3,6 +3,7 @@ import {ApiProperty} from "@nestjs/swagger";
 import {Post} from "../posts/posts.models";
 import {UserColumn} from "../columns/columns.models";
 import {UserCard} from "../cards/cards.models";
+import {UserComment} from "../comments/comments.models";
 
 interface UserCreationAttrs {
     email: string;
@@ -11,8 +12,9 @@ interface UserCreationAttrs {
 @Table({tableName: 'users'})
 export class User extends Model <User, UserCreationAttrs> {
     @ApiProperty({example: 1, description: 'uniq ID'})
+
     @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
-    id: number;
+    userId: number;
     @ApiProperty({example: 'email@mail.com', description: 'u email'})
     @Column({type: DataType.STRING, unique: true, allowNull: false})
     email: string;
@@ -32,4 +34,6 @@ export class User extends Model <User, UserCreationAttrs> {
     columns: UserColumn[];
     @HasMany(() => UserCard)
     cards: UserCard[];
+    @HasMany(() => UserComment)
+    comments: UserComment[];
 }

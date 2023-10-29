@@ -29,7 +29,7 @@ export class AuthService {
     }
 
     private async generateToken(user: User) {
-        const payload = {email: user.email, id: user.id}
+        const payload = {email: user.email, userId: user.userId}
         return {
             token: this.jwtService.sign(payload)
         }
@@ -42,6 +42,7 @@ export class AuthService {
             return user;
         }
         throw new UnauthorizedException({message: 'incorrect email or password'})
+
     }
     async verifyToken(token: string) {
         try {

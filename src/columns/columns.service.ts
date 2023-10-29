@@ -13,7 +13,7 @@ export class ColumnsService {
                 private jwtService: JwtService) {}
     async createColumn(header:string, dto: CreateColumnDto):Promise<UserColumn> {
         const fetch = await require('node-fetch');
-        dto.userId = this.jwtService.verify(header.split(' ')[1]).id
+        dto.userId = this.jwtService.verify(header.split(' ')[1]).userId
 
 
         await fetch(`https://api.trello.com/1/lists?name=${dto.title}&idBoard=${board}&key=${keyApi}&token=${trelloToken}`, {

@@ -1,9 +1,13 @@
-import {Model, Table, Column, DataType, BelongsTo, ForeignKey} from "sequelize-typescript";
+import {Model, Table, Column, DataType, BelongsTo, ForeignKey, HasMany} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
 import {User} from "../users/users.models";
+import {UserCard} from "../cards/cards.models";
+import {IsString} from "class-validator";
 
 interface ColumnCreationAttrs {
     title: string;
+    userId: number;
+    listId : string;
 
 }
 @Table({tableName: 'columns'})
@@ -15,6 +19,7 @@ export class UserColumn extends Model <UserColumn, ColumnCreationAttrs> {
     @Column({type: DataType.STRING, unique: true, allowNull: false})
     title: string;
 
+    @ForeignKey(() => UserColumn)
     @ApiProperty({example: '"65353795450c6870df94394b"', description: 'autoFilled'})
     @Column({type: DataType.STRING, unique: true})
     listId: string;
@@ -31,6 +36,8 @@ export class UserColumn extends Model <UserColumn, ColumnCreationAttrs> {
     @BelongsTo(() => User)
     author: User
 
+    @HasMany(() => UserCard)
+    columns: UserCard[];
 
 
 }

@@ -1,9 +1,14 @@
-import {Model, Table, Column, DataType, BelongsTo, ForeignKey} from "sequelize-typescript";
+import {Model, Table, Column, DataType, BelongsTo, ForeignKey, HasMany} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
 import {User} from "../users/users.models";
 import {UserColumn} from "../columns/columns.models";
+import {IsString} from "class-validator";
+import {UserComment} from "../comments/comments.models";
 
 interface CardCreationAttrs {
+    listId: string;
+    cardName: string;
+    userId: number;
     cardId: string;
 
 }
@@ -16,10 +21,12 @@ export class UserCard extends Model <UserCard, CardCreationAttrs> {
     @Column({type: DataType.STRING, defaultValue: ''})
     cardName: string;
 
+    @ForeignKey(() => UserCard)
     @ApiProperty({example: '65353795450c6870df94394b', description: 'trelloCardID'})
     @Column({type: DataType.STRING, unique:true})
     cardId: string;
 
+    @ForeignKey(() => UserColumn)
     @Column({type: DataType.STRING })
     listId: string;
 
@@ -32,4 +39,9 @@ export class UserCard extends Model <UserCard, CardCreationAttrs> {
     @BelongsTo(() => User)
     author: User;
 
+    @BelongsTo(() => UserColumn)
+    onList: UserColumn;
+
+    @HasMany(() => UserComment)
+    comments: UserComment[];
 }

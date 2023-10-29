@@ -12,7 +12,7 @@ export class CardsService {
                 private jwtService: JwtService) {}
     async createCard(header:string, dto: CreateCardDto):Promise<UserCard> {
         const fetch = await require('node-fetch');
-        dto.userId = this.jwtService.verify(header.split(' ')[1]).id
+        dto.userId = this.jwtService.verify(header.split(' ')[1]).userId
 
         type Res = {};
 

@@ -17,6 +17,7 @@ import { CardsService } from './cards/cards.service';
 import { CardsModule } from './cards/cards.module';
 import {UserCard} from "./cards/cards.models";
 import {CommentsModule} from "./comments/comments.module";
+import {UserComment} from "./comments/comments.models";
 
 
 
@@ -38,7 +39,7 @@ import {CommentsModule} from "./comments/comments.module";
             username: process.env.POSTGRESS_USER,
             password: process.env.POSTGRESS_PASSWORD,
             database: process.env.POSTGRESS_DB,
-            models: [User, Post,UserColumn,UserCard],
+            models: [User, Post,UserColumn,UserCard, UserComment],
             autoLoadModels: true
         }),
         UsersModule,
