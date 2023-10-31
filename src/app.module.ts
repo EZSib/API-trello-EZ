@@ -4,9 +4,6 @@ import { UsersModule } from './users/users.module';
 import {ConfigModule} from "@nestjs/config";
 import {User} from "./users/users.models";
 import { AuthModule } from './auth/auth.module';
-import { PostsModule } from './posts/posts.module';
-import {Post} from "./posts/posts.models";
-import { FilesModule } from './files/files.module';
 import {ServeStaticModule} from "@nestjs/serve-static";
 import { ColumnsModule } from './columns/columns.module';
 import * as path from 'path';
@@ -37,13 +34,11 @@ import {UserComment} from "./comments/comments.models";
             username: process.env.POSTGRESS_USER,
             password: process.env.POSTGRESS_PASSWORD,
             database: process.env.POSTGRESS_DB,
-            models: [User, Post,UserColumn,UserCard, UserComment],
+            models: [User,UserColumn,UserCard, UserComment],
             autoLoadModels: true
         }),
         UsersModule,
         AuthModule,
-        PostsModule,
-        FilesModule,
         ColumnsModule,
         CardsModule,
         CommentsModule,

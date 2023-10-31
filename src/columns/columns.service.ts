@@ -6,6 +6,7 @@ import {board, keyApi, trelloToken} from "../trello_items";
 import {JwtService} from "@nestjs/jwt";
 import {UpdateColumnDto} from "./dto/update-column-dto";
 
+
 @Injectable()
 export class ColumnsService {
 
@@ -107,7 +108,7 @@ export class ColumnsService {
                     return 'An unexpected error occurred';
                 }
             }
-        };
+        }
         dto.listId =  await getLists();
         return await this.userColumnRepository.create(dto);
     }

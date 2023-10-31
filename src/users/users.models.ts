@@ -1,6 +1,5 @@
 import {Model, Table, Column, DataType, HasMany} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
-import {Post} from "../posts/posts.models";
 import {UserColumn} from "../columns/columns.models";
 import {UserCard} from "../cards/cards.models";
 import {UserComment} from "../comments/comments.models";
@@ -31,8 +30,6 @@ export class User extends Model <User, UserCreationAttrs> {
     @Column({type: DataType.STRING, allowNull: true})
     banReason: string;
 
-    @HasMany(() => Post)
-    posts: Post[];
 
     @HasMany(() => UserColumn)
     columns: UserColumn[];

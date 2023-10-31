@@ -2,7 +2,7 @@ import {Model, Table, Column, DataType, BelongsTo, ForeignKey, HasMany} from "se
 import {ApiProperty} from "@nestjs/swagger";
 import {User} from "../users/users.models";
 import {UserCard} from "../cards/cards.models";
-import {IsString} from "class-validator";
+
 
 interface ColumnCreationAttrs {
     title: string;

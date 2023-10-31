@@ -1,17 +1,15 @@
 import {
     CanActivate,
     ExecutionContext,
-    HttpException,
-    HttpStatus,
     Injectable,
     UnauthorizedException
 } from "@nestjs/common";
-
 import {JwtService} from "@nestjs/jwt";
 import { UsersService } from "../users/users.service";
 import {CommentsService} from "../comments/comments.service";
 import {ColumnsService} from "../columns/columns.service";
 import {CardsService} from "../cards/cards.service";
+
 
 @Injectable()
 export class OwnershipGuard implements CanActivate {
@@ -21,9 +19,10 @@ export class OwnershipGuard implements CanActivate {
         private commentsService: CommentsService,
         private columnsService: ColumnsService,
         private cardsService: CardsService,
-    ) {}
+    ) {
+    }
 
-    async canActivate(context: ExecutionContext):  Promise<boolean>  {
+    async canActivate(context: ExecutionContext): Promise<boolean> {
         const req = context.switchToHttp().getRequest();
         const authHeader = req.headers.authorization;
         const bearer = authHeader.split(' ')[0]
@@ -42,7 +41,7 @@ export class OwnershipGuard implements CanActivate {
             const model = await this.userService.getUserByUserId(modelId);
             return user.userId === model.userId
 
-            }
+        }
         if (method === 'PUT') {
             if (req.body.commentId && req.body.cardId) {
                 const commentId = req.body.commentId
@@ -74,9 +73,5 @@ export class OwnershipGuard implements CanActivate {
                 return user.userId === card.userId
             }
         }
-
-    } catch (e) {
-            console.log()
-            throw new HttpException( 'Нет доступа', HttpStatus.INTERNAL_SERVER_ERROR)
-        }
     }
+}

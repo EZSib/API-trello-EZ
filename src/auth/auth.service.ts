@@ -7,6 +7,7 @@ import {User} from "../users/users.models";
 import * as jwt from 'jsonwebtoken'
 import { promisify } from 'util';
 
+
 @Injectable()
 export class AuthService {
     constructor(private userService: UsersService,

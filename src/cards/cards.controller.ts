@@ -4,12 +4,10 @@ import {JwtAuthGuards} from "../auth/jwt.auth.guards";
 import {UserCard} from "./cards.models";
 import {CardsService} from "./cards.service";
 import {CreateCardDto} from "./dto/create-card-dto";
-import {UserComment} from "../comments/comments.models";
-import {CreateCommentDto} from "../comments/dto/create-comment-dto";
-import {UpdateCommentDto} from "../comments/dto/update-comment-dto";
 import {UpdateCardDto} from "./dto/update-card-dto";
 import {UserColumn} from "../columns/columns.models";
 import {OwnershipGuard} from "../auth/owner-guards";
+
 
 @Controller('users')
 @ApiTags('CardsApi')

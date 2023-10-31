@@ -4,7 +4,6 @@ import { UsersService } from './users.service';
 import {SequelizeModule} from "@nestjs/sequelize";
 import {User} from "./users.models";
 import {AuthModule} from "../auth/auth.module";
-import {Post} from "../posts/posts.models";
 import {OwnershipGuard} from "../auth/owner-guards";
 import {UserColumn} from "../columns/columns.models";
 import {UserCard} from "../cards/cards.models";
@@ -17,7 +16,7 @@ import {CardsService} from "../cards/cards.service";
   controllers: [UsersController],
   providers: [UsersService,OwnershipGuard,CommentsService,ColumnsService,CardsService],
   imports: [
-      SequelizeModule.forFeature([User, Post,UserColumn,UserCard,UserComment]),
+      SequelizeModule.forFeature([User,UserColumn,UserCard,UserComment]),
       forwardRef(() => AuthModule),
   ],
     exports: [

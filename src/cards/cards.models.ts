@@ -4,6 +4,7 @@ import {User} from "../users/users.models";
 import {UserColumn} from "../columns/columns.models";
 import {UserComment} from "../comments/comments.models";
 
+
 interface CardCreationAttrs {
     listId: string;
     cardName: string;
@@ -11,6 +12,7 @@ interface CardCreationAttrs {
     cardId: string;
 
 }
+
 @Table({tableName: 'cards'})
 export class UserCard extends Model <UserCard, CardCreationAttrs> {
 

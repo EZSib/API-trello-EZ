@@ -1,5 +1,5 @@
 import {Body, Controller, Delete, Get, Headers, Param, Post, Put, UseGuards} from '@nestjs/common';
-import {ApiOperation, ApiProperty, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {ApiOperation,  ApiResponse, ApiTags} from "@nestjs/swagger";
 import {JwtAuthGuards} from "../auth/jwt.auth.guards";
 import {UserComment} from "./comments.models";
 import {CommentsService} from "./comments.service";
