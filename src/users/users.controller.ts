@@ -14,7 +14,6 @@ export class UsersController {
     constructor(private usersService: UsersService) {
     }
 
-
     @ApiOperation({summary: 'Get all users'})
     @ApiResponse({status: 200, type: [User]})
     @Get()
@@ -29,9 +28,8 @@ export class UsersController {
     @UseGuards(JwtAuthGuards)
     getByValue(@Param('id') id: number) {
         return this.usersService.getUserByUserId(id);
-
-
     }
+
     @ApiOperation({summary: 'Ban user'})
     @ApiResponse({status: 200, type: User})
     @UseGuards(JwtAuthGuards)
@@ -39,6 +37,5 @@ export class UsersController {
     @Post('/ban')
     ban(@Body() dto: BanUserDto) {
         return this.usersService.ban(dto);
-
     }
 }

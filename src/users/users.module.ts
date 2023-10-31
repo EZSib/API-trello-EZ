@@ -9,10 +9,13 @@ import {OwnershipGuard} from "../auth/owner-guards";
 import {UserColumn} from "../columns/columns.models";
 import {UserCard} from "../cards/cards.models";
 import {UserComment} from "../comments/comments.models";
+import {CommentsService} from "../comments/comments.service";
+import {ColumnsService} from "../columns/columns.service";
+import {CardsService} from "../cards/cards.service";
 
 @Module({
   controllers: [UsersController],
-  providers: [UsersService,OwnershipGuard],
+  providers: [UsersService,OwnershipGuard,CommentsService,ColumnsService,CardsService],
   imports: [
       SequelizeModule.forFeature([User, Post,UserColumn,UserCard,UserComment]),
       forwardRef(() => AuthModule),

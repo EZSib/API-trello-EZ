@@ -7,11 +7,23 @@ import {CreateCommentDto} from "./dto/create-comment-dto";
 import {UpdateCommentDto} from "./dto/update-comment-dto";
 
 
-
 @Injectable()
 export class CommentsService {
     constructor(@InjectModel(UserComment) private userCommentRepository: typeof UserComment,
                 private jwtService: JwtService) {}
+
+    async getUserComments(userId:number){
+        return await this.userCommentRepository.findAll({where:{userId:userId}})
+    }
+
+    async getComment(commentId:string){
+        return await this.userCommentRepository.findByPk(commentId)
+    }
+
+    async getCommentOnCard(cardId:string){
+        return await this.userCommentRepository.findAll({where:{cardId:cardId}})
+    }
+
     async deleteComment(cardId: string, commentId: string){
         fetch(`https://api.trello.com/1/cards/${cardId}/actions/${commentId}/comments?key=${keyApi}&token=${trelloToken}`, {
             method: 'DELETE'
@@ -35,6 +47,7 @@ export class CommentsService {
         await comment.save()
         return comment
     }
+
     async createComment(header:string, dto: CreateCommentDto):Promise<UserComment> {
         const fetch = await require('node-fetch');
         dto.userId = this.jwtService.verify(header.split(' ')[1]).userId
@@ -55,15 +68,13 @@ export class CommentsService {
             })
         })
 
-        async function getgthis(response){
+        async function getLastId(response){
             const result = (await response.json()) as GetUsersResponse;
             const res = JSON.stringify(result, null, 4)
             return res.split('\n')[1].slice(11,35);
         }
-        dto.commentId = await getgthis(response)
-
+        dto.commentId = await getLastId(response)
         return await this.userCommentRepository.create(dto)
-
 
     }
 }

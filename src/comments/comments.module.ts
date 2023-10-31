@@ -8,12 +8,16 @@ import { AuthModule } from "../auth/auth.module";
 import { UserColumn } from "../columns/columns.models";
 import { UserComment } from "./comments.models";
 import {Post} from "../posts/posts.models";
+import {OwnershipGuard} from "../auth/owner-guards";
+import {UsersService} from "../users/users.service";
+import {ColumnsService} from "../columns/columns.service";
+import {CardsService} from "../cards/cards.service";
 
 
 
 
 @Module({
-  providers: [CommentsService],
+  providers: [UsersService,OwnershipGuard,CommentsService,ColumnsService,CardsService],
   controllers: [CommentsController],
   imports: [
     SequelizeModule.forFeature([User, Post,UserColumn,UserCard,UserComment]),
