@@ -61,26 +61,22 @@ export class OwnershipGuard implements CanActivate {
                 const list = await this.columnsService.getColumn(columnId)
                 return user.userId === list.userId
             }
-
+        }
 
         if (method === 'DELETE') {
-
             if (params.commentId) {
                 const commentId = req.params.commentId
                 const comment = await this.commentsService.getComment(commentId)
                 return user.userId === comment.userId
-            }
-            else {
+            } else {
                 const cardId = req.params.cardId
                 const card = await this.cardsService.getCard(cardId)
                 return user.userId === card.userId
             }
         }
 
-        }
-
     } catch (e) {
-            console.log(e)
-            throw new HttpException( 'Нет доступа', HttpStatus.FORBIDDEN)
+            console.log()
+            throw new HttpException( 'Нет доступа', HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }

@@ -1,4 +1,4 @@
-import {Module,MiddlewareConsumer } from "@nestjs/common";
+import {Module, MiddlewareConsumer, RequestMethod} from "@nestjs/common";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { UsersModule } from './users/users.module';
 import {ConfigModule} from "@nestjs/config";
@@ -12,8 +12,6 @@ import { ColumnsModule } from './columns/columns.module';
 import * as path from 'path';
 import {UserColumn} from "./columns/columns.models";
 import {AuthMiddleware} from "./auth/auth.middleware";
-import { CardsController } from './cards/cards.controller';
-import { CardsService } from './cards/cards.service';
 import { CardsModule } from './cards/cards.module';
 import {UserCard} from "./cards/cards.models";
 import {CommentsModule} from "./comments/comments.module";
@@ -52,9 +50,10 @@ import {UserComment} from "./comments/comments.models";
     ]
 })
 
-export class AppModule {
-    // configure(consumer: MiddlewareConsumer) {
-    //     consumer.apply(AuthMiddleware).forRoutes('*')
-    // }
-}
+export class AppModule {}
 
+// configure(consumer: MiddlewareConsumer) {
+//     consumer
+//         .apply(AuthMiddleware)
+//         .forRoutes({ path: 'users/*', method: RequestMethod.ALL });
+// }
